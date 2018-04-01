@@ -6,23 +6,23 @@ public class MyFirstProgram {
     hello("user");
     hello("Andrij");
 
-    double l = 5;
-    System.out.println("Kwadrat ze stroną " + l + " ma pole = " + area(l));
+    Squery s = new Squery(5);
+    System.out.println("Kwadrat ze stroną " + s.l + " ma pole = " + area(s));
 
-    double a = 4;
-    double b = 6;
-    System.out.println("Prostokąt ze stronami " + a + " i " + b + " ma pole = " + area(a, b));
+
+    Rectangle r = new Rectangle(4,6);
+    System.out.println("Prostokąt ze stronami " + r.a + " i " + r.b + " ma pole = " + area(r));
   }
 
   public static void hello(String somebody) {
     System.out.println("Hello, " + somebody + "!");
   }
 
-  public static double area(double len) {
-    return len * len;
+  public static double area(Squery s) {
+    return s.l * s.l;
   }
 
-  public static double area(double a, double b) {
-    return a * b;
+  public static double area(Rectangle r) {
+    return r.a * r.b;
   }
 }
