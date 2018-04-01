@@ -10,4 +10,8 @@ public class Squery {
   public Squery(double len) {
     this.l = len;
   }
+
+  public double area() {
+    return this.l * this.l;
+  }
 }
