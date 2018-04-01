@@ -1,4 +1,4 @@
-package stqa.pft.sanbox;
+package stqa.pft.sandbox;
 
 /**
  * Created by Iwona Zajac on 01.04.2018.
