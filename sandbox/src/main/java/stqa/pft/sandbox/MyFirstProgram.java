@@ -6,7 +6,7 @@ public class MyFirstProgram {
     hello("user");
     hello("Andrij");
 
-    Squery s = new Squery(5);
+    Squary s = new Squary(5);
     System.out.println("Kwadrat ze stroną " + s.l + " ma pole = " + s.area());
 
 
