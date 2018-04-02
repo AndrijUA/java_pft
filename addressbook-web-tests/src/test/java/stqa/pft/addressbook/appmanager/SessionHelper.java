@@ -6,24 +6,19 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Iwona Zajac on 02.04.2018.
  */
-public class SessionHelper {
-  private WebDriver wd;
+public class SessionHelper extends HelperBase {
 
   public SessionHelper(WebDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void login(String userName, String password) {
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(userName);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+    type(By.name("user"),userName);
+    type(By.name("pass"),password);
+    click(By.xpath("//input[@value='Login']"));
   }
 
   public void logout() {
-    wd.findElement(By.linkText("Logout")).click();
+    click(By.linkText("Logout"));
   }
 }
