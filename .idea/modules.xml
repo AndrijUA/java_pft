@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox_main.iml" group="sandbox" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox_test.iml" group="sandbox" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/selenium-gmail.iml" filepath="$PROJECT_DIR$/.idea/modules/selenium-gmail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/selenium-gmail_main.iml" filepath="$PROJECT_DIR$/.idea/modules/selenium-gmail_main.iml" group="selenium-gmail" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/selenium-gmail_test.iml" filepath="$PROJECT_DIR$/.idea/modules/selenium-gmail_test.iml" group="selenium-gmail" />
     </modules>
   </component>
 </project>
