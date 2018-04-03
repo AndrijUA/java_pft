@@ -15,4 +15,13 @@ public class GroupCreationTests extends TestBase {
     app.getGroupHelper().returnToGroupPage();
   }
 
+  @Test
+  public void testGroupCreationFieldDefault() throws Exception {
+    app.getNavigationHelper().gotoGroupPage();
+    app.getGroupHelper().initGroupCreation();
+    app.getGroupHelper().fillGroupForm(new GroupData("test1", null, null));
+    app.getGroupHelper().submitGroupCreation();
+    app.getGroupHelper().returnToGroupPage();
+  }
+
 }
