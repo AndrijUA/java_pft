@@ -4,10 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.pft.addressbook.model.GroupData;
+import stqa.pft.addressbook.model.Groups;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Iwona Zajac on 07.04.2018.
@@ -24,12 +28,25 @@ public class GroupModificationTests extends TestBase {
 
   @Test
   public void testGroupModification() {
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName("test1").withHeader("test4").withFooter("test5");
     app.group().modify(group);
-    Set<GroupData> after = app.group().all();
+    Groups after = app.group().all();
+    Assert.assertEquals(after.size(), before.size());
+
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+  }
+
+  @Test
+  public void testGroupModificationOLD2() {
+    Set<GroupData> before = app.group().setAll();
+    GroupData modifiedGroup = before.iterator().next();
+    GroupData group = new GroupData()
+            .withId(modifiedGroup.getId()).withName("test1").withHeader("test4").withFooter("test5");
+    app.group().modify(group);
+    Set<GroupData> after = app.group().setAll();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(modifiedGroup);
