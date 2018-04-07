@@ -16,12 +16,14 @@ public class GroupModificationTestsOLD extends TestBase {
   public void testGroupModification() {
     app.goTo().groupPage();
     if (!app.group().isThereAGroup()) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("test1"));
     }
     List<GroupData> before = app.group().list();
-    app.group().select(before.size() - 1);
+    app.group().selectGroup(before.size() - 1);
     app.group().initGroupModification();
-    GroupData group = new GroupData(before.get(before.size() - 1).getId(), "test1", "test4", "test5");
+    GroupData group = new GroupData()
+            .withId(before.get(before.size() - 1).getId())
+            .withName("test1").withHeader("test4").withFooter("test5");
     app.group().fillGroupForm(group);
     app.group().submitGroupModification();
     app.group().returnToGroupPage();
