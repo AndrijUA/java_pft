@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,18 +14,18 @@ public class GroupModificationTestsOLD extends TestBase {
 
   @Test
   public void testGroupModification() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+    app.goTo().groupPage();
+    if (!app.group().isThereAGroup()) {
+      app.group().create(new GroupData("test1", null, null));
     }
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().selectGroup(before.size() - 1);
-    app.getGroupHelper().initGroupModification();
+    List<GroupData> before = app.group().list();
+    app.group().select(before.size() - 1);
+    app.group().initGroupModification();
     GroupData group = new GroupData(before.get(before.size() - 1).getId(), "test1", "test4", "test5");
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().submitGroupModification();
-    app.getGroupHelper().returnToGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().fillGroupForm(group);
+    app.group().submitGroupModification();
+    app.group().returnToGroupPage();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(before.size() - 1);
