@@ -1,8 +1,6 @@
 package stqa.pft.addressbook.tests;
 
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import stqa.pft.addressbook.model.GroupData;
@@ -23,8 +21,8 @@ public class GroupCreationTests extends TestBase {
     Groups before = app.group().all();
     GroupData group = new GroupData().withName("test1").withHeader("test2").withFooter("test3");
     app.group().create(group);
+    assertThat(app.group().count(),equalTo(before.size()+1));
     Groups after = app.group().all();
-    assertThat(after.size(),equalTo(before.size()+1));
 
     before.add(group);
     assertThat(after,equalTo(
@@ -32,11 +30,24 @@ public class GroupCreationTests extends TestBase {
   }
 
   @Test
+  public void testBadGroupCreation() throws Exception {
+    app.goTo().groupPage();
+    Groups before = app.group().all();
+    GroupData group = new GroupData().withName("test1'");
+    app.group().create(group);
+    assertThat(app.group().count(),equalTo(before.size()));
+    Groups after = app.group().all();
+
+    before.add(group);
+    assertThat(after,equalTo(before));
+  }
+
+  @Test
   public void testGroupCreationFieldDefault() throws Exception {
     app.goTo().groupPage();
-    int before = app.group().getGroupCount();
+    int before = app.group().count();
     app.group().create(new GroupData().withName("test1"));
-    int after = app.group().getGroupCount();
+    int after = app.group().count();
     Assert.assertEquals(after, before + 1);
   }
 
