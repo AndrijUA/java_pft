@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
     app.goTo().gotoHomePage();
     app.contact().initContactCreation();
     app.contact().fillContactForm(new ContactData().withFirstname("test_name").withLastname("test_surname")
-            .withGroup("test1"), true);
+            .withGroup("test1").withPhone("+7 (111)").withMobilePhone("22-22").withWorkPhone("33 33 33"), true);
     app.contact().submitContactCreation();
     app.contact().returnToHomePage();
   }
