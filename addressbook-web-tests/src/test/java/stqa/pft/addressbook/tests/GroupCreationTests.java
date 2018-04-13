@@ -4,6 +4,8 @@ package stqa.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import stqa.pft.addressbook.model.GroupData;
@@ -100,7 +102,7 @@ public class GroupCreationTests extends TestBase {
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();
 
-    before.add(group);
+//    before.add(group);
     assertThat(after, equalTo(before));
   }
 

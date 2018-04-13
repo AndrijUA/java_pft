@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite2" verbose="1">
+    <!--zapusk testów z konsoli
+     => cd E:\Rodzina\Andrzej\Test\JavaTesting\java_pft\addressbook-web-tests
+     => gradlew test
+     => gradlew -Ptarget=local testContacts
+      -->
+    <test name="Contacts">
+        <classes>
+            <class name="stqa.pft.addressbook.tests.ContactCreationTests"/>
+            <class name="stqa.pft.addressbook.tests.ContactModificationTests"/>
+            <class name="stqa.pft.addressbook.tests.ContactPhoneTests"/>
+        </classes>
+    </test>
+</suite>
