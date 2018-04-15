@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GroupModificationTestsOLD extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testGroupModification() {
     app.goTo().groupPage();
     if (!app.group().isThereAGroup()) {

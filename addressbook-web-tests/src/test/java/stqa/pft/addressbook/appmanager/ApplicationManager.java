@@ -30,8 +30,9 @@ public class ApplicationManager {
   private ContactHelper contactHelper;
   private StringBuffer verificationErrors = new StringBuffer();
   private String browser;
+  private DbHelper dbHelper;
 
-  public ApplicationManager(String browser){
+  public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
   }
@@ -39,6 +40,8 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    dbHelper = new DbHelper();
 
     if (browser.equals(BrowserType.FIREFOX)) {
       System.setProperty("webdriver.gecko.driver", "C:\\SeleniumTools\\geckodriver.exe");
@@ -85,5 +88,9 @@ public class ApplicationManager {
 
   public ContactHelper contact() {
     return contactHelper;
+  }
+
+  public DbHelper db() {
+    return dbHelper;
   }
 }
