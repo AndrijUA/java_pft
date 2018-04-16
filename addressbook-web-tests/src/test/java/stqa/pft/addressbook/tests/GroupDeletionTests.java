@@ -30,37 +30,49 @@ public class GroupDeletionTests extends TestBase {
 
   @Test
   public void testGroupDeletion() throws Exception {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
     assertThat(app.group().count(),equalTo(before.size()-1));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
 
     assertThat(after, equalTo(before.without(deletedGroup)));
+    verifyGroupListInUI();
   }
 
-  @Test
-  public void testGroupDeletionOld2() throws Exception {
-    Set<GroupData> before = app.group().setAll();
-    GroupData deletedGroup = before.iterator().next();
-    app.group().delete(deletedGroup);
-    Set<GroupData> after = app.group().setAll();
-    assertEquals(after.size(), before.size() - 1);
-
-    before.remove(deletedGroup);
-    assertEquals(before, after);
-  }
-
-  @Test
-  public void testGroupDeletionOld0() throws Exception {
-    List<GroupData> before = app.group().list();
-    int index = before.size() - 1;
-    app.group().delete(index);
-    List<GroupData> after = app.group().list();
-    assertEquals(after.size(), before.size() - 1);
-
-    before.remove(index);
-    assertEquals(before, after);
-  }
+//  @Test
+//  public void testGroupDeletion() throws Exception {
+//    Groups before = app.group().all();
+//    GroupData deletedGroup = before.iterator().next();
+//    app.group().delete(deletedGroup);
+//    assertThat(app.group().count(),equalTo(before.size()-1));
+//    Groups after = app.group().all();
+//
+//    assertThat(after, equalTo(before.without(deletedGroup)));
+//  }
+//
+//  @Test
+//  public void testGroupDeletionOld2() throws Exception {
+//    Set<GroupData> before = app.group().setAll();
+//    GroupData deletedGroup = before.iterator().next();
+//    app.group().delete(deletedGroup);
+//    Set<GroupData> after = app.group().setAll();
+//    assertEquals(after.size(), before.size() - 1);
+//
+//    before.remove(deletedGroup);
+//    assertEquals(before, after);
+//  }
+//
+//  @Test
+//  public void testGroupDeletionOld0() throws Exception {
+//    List<GroupData> before = app.group().list();
+//    int index = before.size() - 1;
+//    app.group().delete(index);
+//    List<GroupData> after = app.group().list();
+//    assertEquals(after.size(), before.size() - 1);
+//
+//    before.remove(index);
+//    assertEquals(before, after);
+//  }
 
 }
