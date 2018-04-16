@@ -4,6 +4,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Iwona Zajac on 04.04.2018.
@@ -21,9 +23,6 @@ public class ContactData {
 
   @Column(name = "lastname ")
   private String secondname;
-
-  @Transient
-  private String group;
 
   @Column(name = "home")
   @Type(type = "text")
@@ -44,6 +43,11 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
   public int getId() {
     return id;
   }
@@ -54,10 +58,6 @@ public class ContactData {
 
   public String getLastname() {
     return secondname;
-  }
-
-  public String getGroup() {
-    return group;
   }
 
   public String getHomePhone() {
@@ -78,6 +78,10 @@ public class ContactData {
 
   public File getPhoto() {
     return new File(photo);
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   @Override
@@ -112,11 +116,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public ContactData withPhone(String home) {
     this.homePhone = home;
     return this;
@@ -134,6 +133,11 @@ public class ContactData {
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
     return this;
   }
 }
